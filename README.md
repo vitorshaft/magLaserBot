@@ -88,9 +88,9 @@ The OLED screen shows:
 
 ## 🤖 Robot Specifications
 
-- Wheel diameter: 32mm
-- Wheel base: 90mm
-- Encoder resolution: 330 pulses per revolution
+- Wheel diameter: 40mm
+- Wheel base: 120mm
+- Encoder resolution: 1000 pulses per revolution
 - Maximum mapping range: 1000mm × 1000mm
 - Obstacle detection range: up to 2000mm
 
@@ -103,9 +103,9 @@ compass.setCalibration(mx_min, mx_max, my_min, my_max);
 
 - Adjust robot parameters in code:
 ```cpp
-const float WHEEL_DIAMETER = 32.0;    // mm
-const float WHEEL_BASE = 90.0;        // mm
-const int PULSES_PER_REVOLUTION = 330;
+const float WHEEL_DIAMETER = 40.0;    // mm
+const float WHEEL_BASE = 120.0;        // mm
+const int PULSES_PER_REVOLUTION = 1000;
 ```
 
 - Set `magnetic_declination` according to your geographic location
@@ -124,12 +124,11 @@ Grid: X:25, Y:17 | Value: 1
 |-----------|-----------------|-----------------|
 | GPIO 21   | I2C             | SDA             |
 | GPIO 22   | I2C             | SCL             |
-| GPIO 4    | Motor Driver    | STBY            |
 | GPIO 14   | Motor Driver    | AIN1            |
 | GPIO 27   | Motor Driver    | AIN2            |
 | GPIO 12   | Motor Driver    | PWMA            |
-| GPIO 32   | Motor Driver    | BIN1            |
-| GPIO 33   | Motor Driver    | BIN2            |
+| GPIO 33   | Motor Driver    | BIN1            |
+| GPIO 32   | Motor Driver    | BIN2            |
 | GPIO 13   | Motor Driver    | PWMB            |
 | GPIO 25   | Encoder Left    | Channel A       |
 | GPIO 26   | Encoder Left    | Channel B       |

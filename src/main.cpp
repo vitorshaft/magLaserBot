@@ -13,25 +13,24 @@
 #define OLED_HEIGHT 64
 #define OLED_RESET -1
 
-// Driver TB6612FNG
-#define STBY 4
+// Driver L298N
 #define AIN1 14
 #define AIN2 27
 #define PWMA 12
-#define BIN1 32
-#define BIN2 33
+#define BIN1 33
+#define BIN2 32
 #define PWMB 13
 
 // Encoders
 #define ENC_ESQ_A 25
 #define ENC_ESQ_B 26
-#define ENC_DIR_A 34
-#define ENC_DIR_B 35
+#define ENC_DIR_A 35
+#define ENC_DIR_B 34
 
 // Constantes do robô
-const float WHEEL_DIAMETER = 32.0;  // Diâmetro da roda em mm
-const float WHEEL_BASE = 90.0;      // Distância entre as rodas em mm
-const int PULSES_PER_REVOLUTION = 330;  // Pulsos do encoder por volta completa
+const float WHEEL_DIAMETER = 40.0;  // Diâmetro da roda em mm
+const float WHEEL_BASE = 120.0;      // Distância entre as rodas em mm
+const int PULSES_PER_REVOLUTION = 1000;  // Pulsos do encoder por volta completa
 
 // Configurações PWM
 const int PWM_FREQ = 5000;
@@ -88,15 +87,12 @@ void IRAM_ATTR ISR_EncoderDir() {
 // ==================== CONTROLE DOS MOTORES ====================
 
 void setupMotors() {
-  pinMode(STBY, OUTPUT);
   pinMode(AIN1, OUTPUT);
   pinMode(AIN2, OUTPUT);
   pinMode(PWMA, OUTPUT);
   pinMode(BIN1, OUTPUT);
   pinMode(BIN2, OUTPUT);
   pinMode(PWMB, OUTPUT);
-  
-  digitalWrite(STBY, HIGH);
   
   ledcSetup(PWM_CHANNEL_A, PWM_FREQ, PWM_RESOLUTION);
   ledcSetup(PWM_CHANNEL_B, PWM_FREQ, PWM_RESOLUTION);
@@ -226,8 +222,8 @@ void drawMap() {
   }
   
   // Desenhar posição do robô
-  int robotDisplayX = (MAP_SIZE / 2 + (int)(robotX / mapScale)) / displayScale;
-  int robotDisplayY = (MAP_SIZE / 2 + (int)(robotY / mapScale)) / displayScale;
+  int robotDisplayX = ((MAP_SIZE / 2 + (int)(robotX / mapScale)) / displayScale)+70;
+  int robotDisplayY = ((MAP_SIZE / 2 + (int)(robotY / mapScale)) / displayScale)+8;
   
   if (robotDisplayX >= 0 && robotDisplayX < OLED_WIDTH && 
       robotDisplayY >= 0 && robotDisplayY < OLED_HEIGHT) {
